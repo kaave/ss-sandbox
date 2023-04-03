@@ -26,6 +26,7 @@ specifiers:
   identity-obj-proxy: ^3.0.0
   jest: ^27.0.6
   jest-cli: ^27.0.6
+  jotai: 2.0.2
   prettier: ^2.3.2
   pretty-quick: ^3.1.1
   react: ^17.0.2
@@ -48,6 +49,7 @@ dependencies:
   '@types/react-dom': 17.0.19
   '@types/systemjs': 6.13.1
   '@types/webpack-env': 1.18.0
+  jotai: 2.0.2_react@17.0.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   single-spa: 5.9.4
@@ -5016,6 +5018,18 @@ packages:
       - ts-node
       - utf-8-validate
     dev: true
+
+  /jotai/2.0.2_react@17.0.2:
+    resolution: {integrity: sha512-0yOked08Swa84LUbBjtj7ZLZrE05n3u50rHeZ+bsT86thUjcy0kFgQz9GmEWhYbQDFoT1G8Ww6edSj/MBJHO4A==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      react:
+        optional: true
+    dependencies:
+      react: 17.0.2
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

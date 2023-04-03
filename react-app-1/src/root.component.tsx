@@ -1,5 +1,15 @@
-import { navigateToUrl } from 'single-spa';
+import { navigateToUrl } from "single-spa";
+import { useCounterCommands, useCounterState } from "./counter";
 
 export default function Root(props) {
-  return <section>{props.name} is mounted! this app use react@17. <a href="/react-2" onClick={navigateToUrl}>move to 2</a></section>;
+  const count = useCounterState();
+  const { increment, decrement } = useCounterCommands();
+
+  return (
+    <section>
+      {props.name} is mounted! this app use react@17. <a href="/react-2" onClick={navigateToUrl}>move to 2</a>
+      <br />
+      Count: {count}, <button onClick={increment}>Increment</button>, <button onClick={decrement}>Decrement</button>
+    </section>
+  );
 }
