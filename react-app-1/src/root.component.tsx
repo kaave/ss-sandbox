@@ -1,9 +1,16 @@
 import { navigateToUrl } from "single-spa";
 import { useCounterCommands, useCounterState } from "./counter";
+import { useEffect } from "react";
 
 export default function Root(props) {
   const count = useCounterState();
   const { increment, decrement } = useCounterCommands();
+
+  useEffect(() => {
+    const data = { message: `set count ${count} on react-1` };
+    const event = new CustomEvent("my-custom-event", { detail: data });
+    window.dispatchEvent(event);
+  }, [count]);
 
   return (
     <section style={{ zIndex: 1 }}>
