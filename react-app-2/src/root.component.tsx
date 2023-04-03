@@ -6,7 +6,7 @@ export default function Root(props) {
   const { increment, decrement } = useCounterCommands();
 
   return (
-    <section>
+    <section style={{ zIndex: 1 }}>
       {props.name} is mounted! this app use react@18.{" "}
       <a href="/react-1" onClick={navigateToUrl}>
         move to 1
