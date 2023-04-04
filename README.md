@@ -14,3 +14,5 @@ pnpm install
 cd ../
 make dev -j 4
 ```
+
+Memo: https://github.com/joeldenning/vite-single-spa-root-config

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { navigateToUrl } from "single-spa";
 
 export default function Root() {
   const [message, setMessage] = useState('');
@@ -23,6 +24,10 @@ export default function Root() {
   return (
     <div style={{ top: 0, left: 0, width: '100vw', height: '30vh', background: '#eeffcc', zIndex: 0 }}>
       Root. {message ? <span>Got message: {message}</span> : null}
+      <ul>
+        <li><a href="/react-1" onClick={navigateToUrl}>move to 1</a></li>
+        <li><a href="/react-2" onClick={navigateToUrl}>move to 2</a></li>
+      </ul>
     </div>
   );
 }

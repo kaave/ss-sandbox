@@ -1,4 +1,4 @@
-import { registerApplication, start, LifeCycles } from "single-spa";
+import { registerApplication, start, LifeCycles } from 'single-spa';
 
 registerApplication({
   name: "@kaave/react-app-common",
