@@ -1,5 +1,5 @@
 shell:
-	cd application-shell2 && pnpm start
+	cd application-shell-vite && pnpm start
 
 appcommon:
 	cd react-app-common && pnpm dev
