@@ -3,14 +3,18 @@ lockfileVersion: 5.4
 specifiers:
   '@types/node': ^18.13.0
   '@types/systemjs': ^6.13.1
+  import-map-overrides: ^2.4.2
   single-spa: ^5.9.4
+  systemjs: ^6.14.1
   ts-config-single-spa: ^3.0.0
   typescript: ^5.0.0
   vite: ^4.1.1
   vite-plugin-handlebars: ^1.6.0
 
 dependencies:
+  import-map-overrides: 2.4.2
   single-spa: 5.9.4
+  systemjs: 6.14.1
 
 devDependencies:
   '@types/node': 18.13.0
@@ -236,6 +240,11 @@ packages:
   /@types/systemjs/6.13.1:
     resolution: {integrity: sha512-Jxo2/uif1WpkabfyvWpFmPWFPDdwKUmyL7xWzjtxNALEu2pgce+eISjbf0Vr+SsK/D9savO5kTRcf+COLK5eiQ==}
     dev: true
+
+  /cookie/0.4.2:
+    resolution: {integrity: sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==}
+    engines: {node: '>= 0.6'}
+    dev: false
 
   /esbuild-android-64/0.14.54:
     resolution: {integrity: sha512-Tz2++Aqqz0rJ7kYBfz+iqyE3QMycD4vk7LBRyWaAVFgFtQ/O8EJOnVmTOiDWYZ/uYzB4kvP+bqejYdVKzE5lAQ==}
@@ -508,6 +517,12 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /import-map-overrides/2.4.2:
+    resolution: {integrity: sha512-TkrLj0yMb11xMtSPxruCFmhBdw+w2aNqi1h5PHDah8sTRURFp8mo/gUltUXA4grZw+KQTwvspWpXJp3/pxXdCw==}
+    dependencies:
+      cookie: 0.4.2
+    dev: false
+
   /is-core-module/2.11.0:
     resolution: {integrity: sha512-RRjxlvLDkD1YJwDbroBHMb+cukurkDWNyHx7D3oNB5x9rb5ogcksMC5wHCadcXoo67gVr/+3GFySh3134zi6rw==}
     dependencies:
@@ -588,6 +603,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /systemjs/6.14.1:
+    resolution: {integrity: sha512-8ftwWd+XnQtZ/aGbatrN4QFNGrKJzmbtixW+ODpci7pyoTajg4sonPP8aFLESAcuVxaC1FyDESt+SpfFCH9rZQ==}
+    dev: false
 
   /ts-config-single-spa/3.0.0:
     resolution: {integrity: sha512-SS24+FHn9mi0awcoHN4l6uioBxPjgOnwI8adVZeNnw8oXJ8VyAGDqBfRF1EMVtd9Va0bxA8kkeU0SWtLS/Guvg==}
