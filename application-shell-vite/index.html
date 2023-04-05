@@ -6,8 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Root Config</title>
 
-  <link rel="icon" href="/single-spa.svg">
-
   <!--
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
@@ -18,13 +16,18 @@
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
   <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
 
-  <!-- Shared dependencies go into this import map. Your shared dependencies must be of one of the following formats:
+  <!--
+    Shared dependencies go into this import map.
+    Your shared dependencies must be of one of the following formats:
 
-    1. System.register (preferred when possible) - https://github.com/systemjs/systemjs/blob/master/docs/system-register.md
-    2. UMD - https://github.com/umdjs/umd
+    1. System.register (preferred when possible)
+      https://github.com/systemjs/systemjs/blob/master/docs/system-register.md
+    2. UMD
+      https://github.com/umdjs/umd
     3. Global variable
 
-    More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
+    More information about shared dependencies can be found at
+      https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
   <script type="systemjs-importmap">
     {
@@ -38,26 +41,12 @@
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
-  {{#if isLocal}}
-  <script type="systemjs-importmap">
-    {
-      "imports": {
-        "@kaave/root-config": "./src/root-config.ts"
-      }
-    }
-  </script>
-  {{/if}}
-
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
-  {{#if isLocal}}
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/system.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/extras/amd.js"></script>
-
-  <!-- for TypeScript -->
-  <script src="https://cdn.jsdelivr.net/npm/systemjs-babel@0.3.1/dist/systemjs-babel.js"></script>
-  {{else}}
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.12.1/dist/extras/amd.min.js"></script>
+  {{#if isLocal}}
+  <!-- for TypeScript -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs-babel@0.3.1/dist/systemjs-babel.js"></script>
   {{/if}}
 
 </head>
@@ -65,10 +54,12 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <!-- <script type="systemjs-module" src="./src/main.ts"></script> -->
-  <script>
-    System.import('@kaave/root-config');
-  </script>
+
+  {{#if isLocal}}
+    <script type="systemjs-module" src="./src/root-config.ts"></script>
+  {{else}}
+    <script type="systemjs-module" src="./src/root-config.js"></script>
+  {{/if}}
 
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
