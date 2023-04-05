@@ -48,10 +48,12 @@ function copyNodeModules(copyFiles) {
 
 function main() {
   copyNodeModules([
-    // SystemJS の実行ファイルは bundle せずに個別に読み込む必要がある模様なので public へコピーする。
+    // single-spa, SystemJS の実行ファイルは bundle せずに個別に読み込む必要がある模様なので public へコピーする。
+    '/single-spa/lib/system/single-spa.min.js',
     '/import-map-overrides/dist/import-map-overrides.js',
     '/systemjs/dist/system.min.js',
     '/systemjs/dist/extras/amd.min.js',
+    '/systemjs-babel/dist/systemjs-babel.js'
   ]);
 }
 

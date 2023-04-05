@@ -21,13 +21,13 @@ export default defineConfig(({ mode }) => {
           format: 'system',
           entryFileNames: '[name].js',
           assetFileNames: 'assets/[name][ext]',
-          // globals: {
-          //   'single-spa': 'singleSpa',
-          //   'single-spa-layout': 'singleSpaLayout'
-          // }
+          globals: {
+            'single-spa': 'singleSpa',
+            'single-spa-layout': 'singleSpaLayout'
+          }
         },
         preserveEntrySignatures: 'strict',
-        // external: ['single-spa', 'single-spa-layout']
+        external: ['single-spa', 'single-spa-layout']
       }
     },
     plugins: [

@@ -6,6 +6,7 @@ specifiers:
   import-map-overrides: ^2.4.2
   single-spa: ^5.9.4
   systemjs: ^6.14.1
+  systemjs-babel: ^0.3.2
   ts-config-single-spa: ^3.0.0
   typescript: ^5.0.0
   vite: ^4.1.1
@@ -19,6 +20,7 @@ dependencies:
 devDependencies:
   '@types/node': 18.13.0
   '@types/systemjs': 6.13.1
+  systemjs-babel: 0.3.2
   ts-config-single-spa: 3.0.0
   typescript: 5.0.2
   vite: 4.1.1_@types+node@18.13.0
@@ -602,6 +604,10 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /systemjs-babel/0.3.2:
+    resolution: {integrity: sha512-lk7tV3l/9qVADN8wFNG1QtzvalveYkfCKGa6UKcyetAL1en0xjV/Pycd7P94mBzkKCQpAB2b8pu+hkYcbK+p1w==}
     dev: true
 
   /systemjs/6.14.1:
