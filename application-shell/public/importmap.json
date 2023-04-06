@@ -1,0 +1,5 @@
+{
+  "imports": {
+    "@kaave/root-config": "/kaave-root-config.js"
+  }
+}

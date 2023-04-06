@@ -33,7 +33,6 @@
   <link rel="preload" href="/single-spa/lib/system/single-spa.min.js" as="script">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
-  <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
   <% if (isLocal) { %>
   <script type="systemjs-importmap">
@@ -43,6 +42,8 @@
       }
     }
   </script>
+  <% } else { %>
+  <script type="systemjs-importmap" src="/importmap.json"></script>
   <% } %>
 
   <script src="/import-map-overrides/dist/import-map-overrides.js"></script>

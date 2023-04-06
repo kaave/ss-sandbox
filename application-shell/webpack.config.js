@@ -2,6 +2,7 @@ const { merge } = require("webpack-merge");
 const path = require('path');
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "kaave";
@@ -30,8 +31,14 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new CopyWebpackPlugin({
+        patterns: [
+          { from: 'public', to: '' }
+        ],
+      }),
     ],
     devServer: {
+      open: true,
       static: {
         directory: path.join(__dirname, 'public'),
       },
