@@ -6,7 +6,7 @@
  */
 module.exports = function createSwcDefaultOption(sourceMaps) {
   return {
-    sourceMaps: true,
+    sourceMaps,
     jsc: {
       parser: {
         syntax: "typescript",
