@@ -14,6 +14,9 @@ module.exports = (webpackConfigEnv, argv) => {
   // Note: TS 関連が混じっていると面倒を生むので排除する
   defaultConfig.module.rules = defaultConfig.module.rules.filter(({ test }) => !test.test('.ts'))
 
+  // Note: React は独自に読みこんでほしいので排除する
+  defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
+
   const mergedConfig = merge(defaultConfig, {
     // this project self deps packages.
     externals: {},

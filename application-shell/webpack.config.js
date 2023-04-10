@@ -14,11 +14,11 @@ module.exports = (webpackConfigEnv, argv) => {
     disableHtmlGeneration: true,
   });
 
+  // Note: React は独自に読みこんでほしいので排除する
+  defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
+
   return merge(defaultConfig, {
-    externals: [
-      'single-spa',
-    ],
-    // modify the webpack config however you'd like to by adding to this object
+    externalsType: 'system',
     plugins: [
       new HtmlWebpackPlugin({
         inject: false,

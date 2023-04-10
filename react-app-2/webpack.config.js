@@ -9,6 +9,9 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
+  // Note: React は独自に読みこんでほしいので排除する
+  defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
+
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     externals: {},
