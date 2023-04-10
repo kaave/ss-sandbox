@@ -189,8 +189,7 @@ module.exports = {
     // Component は Arrow function
     'react/function-component-definition': [ERROR, { namedComponents: 'arrow-function' }],
     /** `useState` の命名を `[foo, setFoo]` というルールで強制する。ただし Object destructuring している場合は除く。 */
-    /** @todo なぜかエラーになってしまう。 ESLint: 8.27.0, eslint-plugin-react: 7.31.0 */
-    // 'react/hook-use-state': [ON, { allowDestructuredState: true }],
+    'react/hook-use-state': [ERROR, { allowDestructuredState: true }],
     /** `boolean` の Prop で値を取る必要がない場合はつけない。 */
     'react/jsx-boolean-value': [ERROR, 'never', { always: [] }],
     /** タグを閉じる `>` の位置を固定する。 */
@@ -276,8 +275,7 @@ module.exports = {
     /** React element の命名に `Ns:foo` のような namespace を利用することを禁止する。 */
     'react/no-namespace': ERROR,
     /** Props の Default 値に新規インスタンスを作成する書き方を禁止する。 */
-    /** @todo 7.31.0 ではまだない */
-    // 'react/no-object-type-as-default-prop': ON,
+    'react/no-object-type-as-default-prop': ERROR,
     /** PureComponent で shouldComponentUpdate を使うことを禁止する。 */
     'react/no-redundant-should-component-update': ERROR,
     /** Function component の中で `this` を参照することを禁止する。 */
