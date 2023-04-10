@@ -1,6 +1,7 @@
 {
   "name": "@kaave/react-app-common",
   "types": "dist/kaave-react-app-common.d.ts",
+  "type": "module",
   "scripts": {
     "dev": "webpack serve --port 7500",
     "start": "webpack serve",

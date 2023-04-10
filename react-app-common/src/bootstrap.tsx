@@ -47,7 +47,7 @@ export const Root = (): JSX.Element => {
       </ul>
     </div>
   );
-}
+};
 
 // @todo 別のファイルへ切り出す
 declare global {
