@@ -1,7 +1,7 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
-const createSwcDefaultOption = require('./scripts/createSwcDefaultOption');
+const createSwcDefaultOption = require('./scripts/createSwcDefaultOption.cjs');
 
 const isDevelopmentMode = process.env.NODE_ENV !== 'production';
 
