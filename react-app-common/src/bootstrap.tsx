@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import { navigateToUrl } from "single-spa";
+import { useEffect, useState } from 'react';
+import { navigateToUrl } from 'single-spa';
 
-export default function Root() {
-  const [message, setMessage] = useState("");
+export const Root = (): JSX.Element => {
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const eventDetail = [
-      "my-custom-event",
+      'my-custom-event',
       (event: { detail: { message: string } }) => {
         const data = event.detail;
         console.log(data.message);
@@ -26,9 +26,9 @@ export default function Root() {
       style={{
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "30vh",
-        background: "#eeffcc",
+        width: '100vw',
+        height: '30vh',
+        background: '#eeffcc',
         zIndex: 0,
       }}
     >
@@ -52,6 +52,6 @@ export default function Root() {
 // @todo 別のファイルへ切り出す
 declare global {
   interface WindowEventMap {
-    "my-custom-event": CustomEvent<{ message: string }>;
+    'my-custom-event': CustomEvent<{ message: string }>;
   }
 }
