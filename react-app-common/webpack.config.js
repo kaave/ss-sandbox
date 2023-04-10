@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const createSwcDefaultOption = require('./scripts/createSwcDefaultOption');
 
 const isDevelopmentMode = process.env.NODE_ENV !== 'production';
 
@@ -24,21 +25,7 @@ module.exports = (webpackConfigEnv, argv) => {
           exclude: /node_modules/,
           use: {
             loader: "swc-loader",
-            options: {
-              sourceMaps: isDevelopmentMode,
-              jsc: {
-                parser: {
-                  syntax: "typescript",
-                  tsx: true,
-                },
-                transform: {
-                  react: {
-                    // for "ReferenceError: React is not defined" error
-                    runtime: "automatic",
-                  },
-                },
-              },
-            },
+            options: createSwcDefaultOption(isDevelopmentMode),
           },
         },
       ],
