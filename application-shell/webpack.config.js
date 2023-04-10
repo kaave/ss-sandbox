@@ -14,12 +14,9 @@ module.exports = (webpackConfigEnv, argv) => {
     disableHtmlGeneration: true,
   });
 
-  console.log(defaultConfig);
-
   return merge(defaultConfig, {
     externals: [
       'single-spa',
-      'single-spa-layout',
     ],
     // modify the webpack config however you'd like to by adding to this object
     plugins: [
