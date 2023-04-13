@@ -1,9 +1,6 @@
 module.exports = {
-  extends: [
-    'stylelint-config-recess-order',
-    'stylelint-config-recommended',
-    'stylelint-config-prettier',
-  ],
+  extends: ['stylelint-config-recess-order', 'stylelint-config-recommended', 'stylelint-config-prettier'],
+  plugins: ['stylelint-declaration-block-no-ignored-properties'],
   ignoreFiles: ['node_modules/**/*', 'dist/**/*'],
   rules: {
     /*
@@ -27,6 +24,8 @@ module.exports = {
     'selector-pseudo-class-no-unknown': [true, { ignorePseudoClasses: ['global', 'local', 'export'] }],
     // 不正なCSSはNGだが、exportの中はなんでもあり
     'property-no-unknown': [true, { ignoreSelectors: [':export'] }],
+
+    // `display: inline; width: 100px;` などの無効な組み合わせを注意する。
+    'plugin/declaration-block-no-ignored-properties': true,
   },
 };
-
