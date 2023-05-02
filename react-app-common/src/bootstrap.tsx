@@ -7,7 +7,13 @@ export const Root = (): JSX.Element => {
   useEffect(() => {
     const eventDetail = [
       'my-custom-event',
-      (event: { detail: { message: string } }) => {
+      (event: { /**
+                 *
+                 */
+      detail: { /**
+                 *
+                 */
+      message: string } }) => {
         const data = event.detail;
         console.log(data.message);
         setMessage(data.message);
