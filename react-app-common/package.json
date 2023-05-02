@@ -20,16 +20,9 @@
     "test:watch": "jest --watch",
     "coverage": "jest --coverage"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version"
-    ]
-  },
+  "browserslist": [
+    "chrome >= 92"
+  ],
   "dependencies": {
     "jotai": "2.0.4",
     "react": "^18.2.0",
