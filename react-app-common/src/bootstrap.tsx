@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { navigateToUrl } from 'single-spa';
+import styles from './bootstrap.module.css';
 
 export const Root = (): JSX.Element => {
   const [message, setMessage] = useState('');
@@ -28,16 +29,7 @@ export const Root = (): JSX.Element => {
   }, [setMessage]);
 
   return (
-    <div
-      style={{
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '30vh',
-        background: '#eeffcc',
-        zIndex: 0,
-      }}
-    >
+    <div className={styles.root}>
       Root. {message ? <span>Got message: {message}</span> : null}
       <ul>
         <li>

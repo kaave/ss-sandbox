@@ -19,6 +19,39 @@ module.exports = (webpackConfigEnv, argv) => {
   // Note: React は独自に読みこんでほしいので排除する
   defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
 
+  // Note: PostCSS に対応させたいので追加する
+        // {
+        //   test: /\.css$/i,
+        //   include: [/node_modules/, /src/],
+        //   exclude: [/\.module\.css$/],
+        //   use: [
+        //     {
+        //       loader: require.resolve("style-loader", { paths: [__dirname] }),
+        //     },
+        //     {
+        //       loader: require.resolve("css-loader", { paths: [__dirname] }),
+        //       options: {
+        //         modules: false,
+        //       },
+        //     },
+        //   ],
+        // },
+        // {
+        //   test: /\.module\.css$/i,
+        //   exclude: [/node_modules/],
+        //   use: [
+        //     {
+        //       loader: require.resolve("style-loader", { paths: [__dirname] }),
+        //     },
+        //     {
+        //       loader: require.resolve("css-loader", { paths: [__dirname] }),
+        //       options: {
+        //         modules: true,
+        //       },
+        //     },
+        //   ],
+        // },
+
   return merge(defaultConfig, {
     externalsType: 'system',
     externals: {
