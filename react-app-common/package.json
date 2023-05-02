@@ -1,5 +1,6 @@
 {
   "name": "@kaave/react-app-common",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "webpack serve --port 7500",
@@ -87,5 +88,12 @@
   },
   "peerDependencies": {
     "single-spa": "^5.9.3"
+  },
+  "packageManager": "pnpm@8.4.0",
+  "engines": {
+    "node": "18.14.2",
+    "npm": "please_use_pnpm_instead",
+    "pnpm": "8.4.0",
+    "yarn": "please_use_pnpm_instead"
   }
 }
