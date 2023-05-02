@@ -1,56 +1,41 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const createSwcDefaultOption = require('./scripts/createSwcDefaultOption.cjs');
 
-const isDevelopmentMode = process.env.NODE_ENV !== 'production';
-
 module.exports = (webpackConfigEnv, argv) => {
+  const orgName = 'kaave';
+  const projectName = 'react-app-common';
   const defaultConfig = singleSpaDefaults({
-    orgName: 'kaave',
-    projectName: 'react-app-common',
+    orgName,
+    projectName,
     webpackConfigEnv,
     argv,
   });
 
-  // Note: TS 関連が混じっていると面倒を生むので排除する
+  const isDevelopmentMode = argv.mode !== 'production';
+
+  // TS 関連が混じっていると面倒を生むので排除する
   defaultConfig.module.rules = defaultConfig.module.rules.filter(({ test }) => !test.test('.ts'))
 
-  // Note: React は独自に読みこんでほしいので排除する
+  // React は独自に読みこんでほしいので排除する
   defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
 
-  // Note: PostCSS に対応させたいので追加する
-        // {
-        //   test: /\.css$/i,
-        //   include: [/node_modules/, /src/],
-        //   exclude: [/\.module\.css$/],
-        //   use: [
-        //     {
-        //       loader: require.resolve("style-loader", { paths: [__dirname] }),
-        //     },
-        //     {
-        //       loader: require.resolve("css-loader", { paths: [__dirname] }),
-        //       options: {
-        //         modules: false,
-        //       },
-        //     },
-        //   ],
-        // },
-        // {
-        //   test: /\.module\.css$/i,
-        //   exclude: [/node_modules/],
-        //   use: [
-        //     {
-        //       loader: require.resolve("style-loader", { paths: [__dirname] }),
-        //     },
-        //     {
-        //       loader: require.resolve("css-loader", { paths: [__dirname] }),
-        //       options: {
-        //         modules: true,
-        //       },
-        //     },
-        //   ],
-        // },
+  // PostCSS に対応させ、あわせて Production の際に CSS を単体ファイルとして Export する。
+  defaultConfig
+    .module
+    .rules
+    .filter(({ test }) => test.test('.css') || test.test('.module.css'))
+    .forEach(prev => {
+      const [maybeStyleLoader, ...rest] = prev.use;
+      prev.use = [
+        // style-loader と mini-css-extract-plugin は排他関係
+        ...(isDevelopmentMode ? [maybeStyleLoader] : [MiniCssExtractPlugin.loader]),
+        ...rest,
+        'postcss-loader',
+      ];
+    });
 
   return merge(defaultConfig, {
     externalsType: 'system',
@@ -68,6 +53,10 @@ module.exports = (webpackConfigEnv, argv) => {
           },
         },
       ],
-    }
+    },
+    ...(!isDevelopmentMode && {
+      plugins: [new MiniCssExtractPlugin({ filename: `${orgName}-${projectName}.css` })],
+      devtool: false,
+    }),
   });
 };
