@@ -1,0 +1,36 @@
+pre-push:
+  parallel: true
+  commands:
+    react-app-common/spell:
+      root: 'react-app-common/'
+      glob: '*.{ts,tsx,css,json,yaml,yml}'
+      exclude: 'package.json|pnpm-lock.yaml'
+      run: >
+        pnpm cspell {staged_files}
+    react-app-common/ts,tsx:
+      root: 'react-app-common/'
+      glob: '*.{ts,tsx}'
+      run: >
+        pnpm prettier --write {staged_files}
+        && pnpm eslint --fix {staged_files}
+        && git add {staged_files}
+    react-app-common/css:
+      root: 'react-app-common/'
+      glob: '*.css'
+      run: >
+        pnpm prettier --write {staged_files}
+        && pnpm stylelint --fix {staged_files}
+        && git add {staged_files}
+    react-app-common/json,yaml,yml:
+      root: 'react-app-common/'
+      glob: '*.{json,yaml,yml}'
+      exclude: 'package.json|pnpm-lock.yaml'
+      run: >
+        pnpm prettier --write {staged_files}
+        && git add {staged_files}
+    react-app-common/sort-package-json:
+      root: 'react-app-common/'
+      glob: 'package.json'
+      run: >
+        pnpm sort-package-json
+        && git add {staged_files}

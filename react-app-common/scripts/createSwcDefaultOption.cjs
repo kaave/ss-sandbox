@@ -9,13 +9,13 @@ module.exports = function createSwcDefaultOption(sourceMaps) {
     sourceMaps,
     jsc: {
       parser: {
-        syntax: "typescript",
+        syntax: 'typescript',
         tsx: true,
       },
       transform: {
         react: {
           // for "ReferenceError: React is not defined" error
-          runtime: "automatic",
+          runtime: 'automatic',
         },
       },
     },
