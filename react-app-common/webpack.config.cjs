@@ -7,8 +7,8 @@ const isDevelopmentMode = process.env.NODE_ENV !== 'production';
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
-    orgName: "kaave",
-    projectName: "react-app-common",
+    orgName: 'kaave',
+    projectName: 'react-app-common',
     webpackConfigEnv,
     argv,
   });
@@ -18,8 +18,6 @@ module.exports = (webpackConfigEnv, argv) => {
 
   // Note: React は独自に読みこんでほしいので排除する
   defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
-
-  console.log(defaultConfig);
 
   return merge(defaultConfig, {
     externalsType: 'system',
@@ -32,7 +30,7 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.(j|t)sx?$/,
           exclude: /node_modules/,
           use: {
-            loader: "swc-loader",
+            loader: 'swc-loader',
             options: createSwcDefaultOption(isDevelopmentMode),
           },
         },

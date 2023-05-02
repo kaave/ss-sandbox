@@ -15,7 +15,7 @@
     "fix:scripts": "pnpm prettier; eslint src --ext .ts,.tsx,.js,.jsx --fix",
     "fix:style": "stylelint --fix '**/*.css' && prettier --write '**/*.css'",
     "prettier": "prettier --write \"src/**/*.+(ts|tsx|json|yml|css|md|mdx)\"",
-    "typecheck": "tsc",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "test": "jest",
     "test:watch": "jest --watch",
     "coverage": "jest --coverage"

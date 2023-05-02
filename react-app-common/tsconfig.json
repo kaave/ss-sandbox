@@ -7,9 +7,11 @@
      */
     "module": "esnext",
     "allowSyntheticDefaultImports": true,
+    // `"bundler"` にしたいが、 single-spa-react に不備があり、エラーとなるためやむなく `"node"` とする。
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "lib": [
+      // 最新の ECMAScript に対応するため、 ESNext に変更
       "dom",
       // "scripthost",
       // "es2015",
@@ -19,16 +21,15 @@
       "ESNext"
     ],
     "declaration": true,
-    "emitDeclarationOnly": true,
+    // "emitDeclarationOnly": true, // 型定義は不要なので省略する
 
     /*
      * Manual
      */
     "target": "ESNext",
+    "verbatimModuleSyntax": true,
     "jsx": "react-jsx",
-    "declarationDir": "dist"
+    "declarationDir": "dist",
   },
-  "files": ["src/kaave-react-app-common.tsx"],
   "include": ["src/**/*"],
-  "exclude": ["src/**/*.test*"]
 }
