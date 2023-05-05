@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge');
 const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const path = require('path');
 
 const createSwcDefaultOption = require('./scripts/createSwcDefaultOption.cjs');
 
@@ -35,7 +36,10 @@ module.exports = (webpackConfigEnv, argv) => {
       ];
     });
 
+  const outputPath = projectName;
   return merge(defaultConfig, {
+    entry: path.resolve(__dirname, 'src', 'index.tsx'),
+    output: { filename: `${outputPath}/index.js` },
     externalsType: 'system',
     externals: {
       // 'single-spa': 'singleSpa'
@@ -52,12 +56,11 @@ module.exports = (webpackConfigEnv, argv) => {
               options: createSwcDefaultOption(isDevelopmentMode),
             },
           ],
-
         },
       ],
     },
     ...(!isDevelopmentMode && {
-      plugins: [new MiniCssExtractPlugin({ filename: `${orgName}-${projectName}.css` })],
+      plugins: [new MiniCssExtractPlugin({ filename: `${outputPath}/index.css` })],
       devtool: false,
     }),
   });
