@@ -1,6 +1,6 @@
-const { merge } = require("webpack-merge");
-const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { merge } = require('webpack-merge');
+const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const createSwcDefaultOption = require('./scripts/createSwcDefaultOption.cjs');
 
@@ -17,15 +17,13 @@ module.exports = (webpackConfigEnv, argv) => {
   const isDevelopmentMode = argv.mode !== 'production';
 
   // TS 関連が混じっていると面倒を生むので排除する
-  defaultConfig.module.rules = defaultConfig.module.rules.filter(({ test }) => !test.test('.ts'))
+  defaultConfig.module.rules = defaultConfig.module.rules.filter(({ test }) => !test.test('.ts'));
 
   // React は独自に読みこんでほしいので排除する
   defaultConfig.externals = defaultConfig.externals.filter(external => !/^react(-dom)?$/.test(external));
 
   // PostCSS に対応させ、あわせて Production の際に CSS を単体ファイルとして Export する。
-  defaultConfig
-    .module
-    .rules
+  defaultConfig.module.rules
     .filter(({ test }) => test.test('.css') || test.test('.module.css'))
     .forEach(prev => {
       const [maybeStyleLoader, ...rest] = prev.use;
@@ -47,10 +45,14 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.(j|t)sx?$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'swc-loader',
-            options: createSwcDefaultOption(isDevelopmentMode),
-          },
+          use: [
+            ...(!isDevelopmentMode ? ['babel-loader'] : []),
+            {
+              loader: 'swc-loader',
+              options: createSwcDefaultOption(isDevelopmentMode),
+            },
+          ],
+
         },
       ],
     },
