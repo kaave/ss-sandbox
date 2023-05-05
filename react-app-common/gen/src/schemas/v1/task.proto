@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package schemas.v1;
+
+import "google/protobuf/timestamp.proto";
+
+message Task {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  TaskStatus status = 4;
+  google.protobuf.Timestamp created_at = 5;
+  google.protobuf.Timestamp updated_at = 6;
+}
+
+service TaskService {
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse) {}
+}
+
+message CreateTaskRequest {
+  string title = 1;
+  string description = 2;
+  TaskStatus status = 3;
+}
+
+message CreateTaskResponse {
+  Task task = 1;
+}
+
+// タスクの進捗。
+enum TaskStatus {
+  /*
+     * なぞ
+     * 0 のものは UNSPECIFIED にせよというルールっぽい
+  */
+  TASK_STATUS_UNSPECIFIED = 0;
+  // まだ
+  TASK_STATUS_TODO = 1;
+  // やっとる
+  TASK_STATUS_IN_PROGRESS = 2;
+  // やった
+  TASK_STATUS_DONE = 3;
+}

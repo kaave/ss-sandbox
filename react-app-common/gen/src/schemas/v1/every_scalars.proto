@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package schemas.v1;
+
+import "google/protobuf/any.proto";
+import "google/protobuf/api.proto";
+// import "google/protobuf/descriptor.proto";
+import "google/protobuf/duration.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/source_context.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/type.proto";
+// import "google/protobuf/wrapper.proto";
+
+// すべてのスカラーを列挙する。
+// on JSON: https://protobuf.dev/programming-guides/proto3/#json
+message EveryScalars {
+  // Double
+  double double_field = 1;
+
+  // Float
+  float float_field = 2;
+
+  // Int32
+  int32 int32_field = 3;
+
+  // Int64
+  int64 int64_field = 4;
+
+  // Uint32
+  uint32 uint32_field = 5;
+
+  // Uint64
+  uint64 uint64_field = 6;
+
+  // Sint32
+  sint32 sint32_field = 7;
+
+  // Sint64
+  sint64 sint64_field = 8;
+
+  // Fixed32
+  fixed32 fixed32_field = 9;
+
+  // Fixed64
+  fixed64 fixed64_field = 10;
+
+  // Sfixed32
+  sfixed32 sfixed32_field = 11;
+
+  // Sfixed64
+  sfixed64 sfixed64_field = 12;
+
+  // Bool
+  bool bool_field = 13;
+
+  // String
+  string string_field = 14;
+
+  // Bytes
+  bytes bytes_field = 15;
+
+  // ------------------
+  // Well-known types
+  // types: https://github.com/bufbuild/protobuf-es/tree/main/packages/protobuf/src/google/protobuf
+  // ------------------
+
+  // Any
+  // see: https://protobuf.dev/programming-guides/proto3/#any
+  google.protobuf.Any any_field = 16;
+
+  // Api
+  google.protobuf.Api api_field = 17;
+
+  // Duration
+  google.protobuf.Duration duration_field = 18;
+
+  // Empty
+  // 戻り値のない service などに使われる
+  google.protobuf.Empty empty_field = 19;
+
+  // FieldMask
+  // Request にこいつを含めて、クライアントが「この値だけくれ」と指定できるようにする
+  google.protobuf.FieldMask field_mask_field = 20;
+
+  // SourceContext
+  google.protobuf.SourceContext source_context_field = 21;
+
+  // Struct
+  google.protobuf.Struct struct_field = 22;
+
+  // Timestamp
+  google.protobuf.Timestamp timestamp_field = 23;
+
+  // Type
+  google.protobuf.Type type_field = 24;
+}
+
+// あれこれ使えるラベルをセットする。型がどうなるか。
+message Labels {
+  // repeated Array として扱われる
+  repeated bool repeated_bool_field = 1;
+  // どっちか、またはなんもなし。
+  // see: https://protobuf.dev/programming-guides/proto3/#any
+  oneof oneof_field {
+    string string_in_oneof_field = 2;
+    int32 int32_in_oneof_field = 3;
+  }
+  // Record として扱われる
+  // see: https://protobuf.dev/programming-guides/proto3/#maps
+  map<string, int32> map_field = 4;
+  // Optional として扱われる
+  optional string optional_field = 5;
+  // 予約。まだ使っちゃいかんことを明示的にする
+  reserved 10, 11 to 13;
+}
