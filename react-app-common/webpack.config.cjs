@@ -3,8 +3,6 @@ const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-const createSwcDefaultOption = require('./scripts/createSwcDefaultOption.cjs');
-
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = 'kaave';
   const projectName = 'react-app-common';
@@ -53,7 +51,21 @@ module.exports = (webpackConfigEnv, argv) => {
             ...(!isDevelopmentMode ? ['babel-loader'] : []),
             {
               loader: 'swc-loader',
-              options: createSwcDefaultOption(isDevelopmentMode),
+              options: {
+                sourceMaps: isDevelopmentMode,
+                jsc: {
+                  parser: {
+                    syntax: 'typescript',
+                    tsx: true,
+                  },
+                  transform: {
+                    react: {
+                      // for "ReferenceError: React is not defined" error
+                      runtime: 'automatic',
+                    },
+                  },
+                },
+              },
             },
           ],
         },
