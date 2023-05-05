@@ -3,16 +3,11 @@
  */
 
 import react from '@vitejs/plugin-react';
-import type { UserConfig } from 'vite';
-import { defineConfig } from 'vite';
-import type { InlineConfig } from 'vitest';
-
-interface VitestConfigExport extends UserConfig {
-  test: InlineConfig;
-}
+import { defineConfig } from 'vitest/config'
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [tsconfigPaths(), react()],
   test: {
     // globals でないと挙動が怪しいテストがいくつかある。 AsyncCounter など。
     globals: true,
@@ -24,4 +19,4 @@ export default defineConfig({
     // since parsing CSS is slow
     exclude: ['node_modules/**/*'],
   },
-} as VitestConfigExport);
+});
