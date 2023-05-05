@@ -21,8 +21,6 @@
     "fix:packagejson": "sort-package-json",
     "prettier": "prettier --write \"src/**/*.+(ts|tsx|json|yml|css|md|mdx)\"",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "_test": "jest",
-    "_test:watch": "jest --watch",
     "test": "vitest",
     "coverage": "jest --coverage"
   },
