@@ -1,0 +1,55 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    /*
+     * Add editor supports
+     */
+
+    // Protobuf
+    "bufbuild.vscode-buf",
+    "zxh404.vscode-proto3",
+    // cuelang
+    "nickgo.cuelang",
+    "brody715.vscode-cuelang",
+    // GHA
+    "github.vscode-github-actions",
+    // JSON5
+    "mrmlnc.vscode-json5",
+    // Makefile
+    "ms-vscode.makefile-tools",
+    // mermaid.js
+    "tomoyukim.vscode-mermaid-editor",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    // Mustache
+    "dawhite.mustache",
+
+    /*
+     * Utils
+     */
+
+    // Comment
+    "aaron-bond.better-comments",
+    "wayou.vscode-todo-highlight",
+    // Support code jumps for CSS class names
+    "pranaygp.vscode-css-peek",
+    // Support css variables
+    "vunguyentuan.vscode-css-variables",
+    // Support ESLint
+    "dbaeumer.vscode-eslint",
+    // Support markdownlint
+    "DavidAnson.vscode-markdownlint",
+    // Playwright utils
+    "ms-playwright.playwright",
+    // Support shellcheck (shell script linter)
+    "timonwong.shellcheck",
+    // Support shell script formatter
+    "shakram02.bash-beautify",
+  ],
+  // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
+  "unwantedRecommendations": [
+
+  ]
+}
