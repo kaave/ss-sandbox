@@ -3,10 +3,9 @@ module.exports = {
     'stylelint-config-recess-order',
     'stylelint-config-recommended',
     'stylelint-config-css-modules',
-    'stylelint-a11y',
     'stylelint-config-prettier',
   ],
-  plugins: ['stylelint-declaration-block-no-ignored-properties'],
+  plugins: ['stylelint-a11y', 'stylelint-declaration-block-no-ignored-properties'],
   ignoreFiles: ['node_modules/**/*', 'dist/**/*'],
   rules: {
     /*

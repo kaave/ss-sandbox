@@ -41,6 +41,10 @@ module.exports = (webpackConfigEnv, argv) => {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
     output: {
       filename: `${outputPath}/index.js`,
+
+      // Note: 明示的に publicPath を指定したかったが、うまくいかないため断念。
+      // see: https://github.com/kaave/ss-sandbox/blob/0650c4fc4521e4a152fcd4626b643965ace3fb75/react-app-common/src/index.tsx#L12
+
       // filename: `index.js`,
       // publicPath: `${outputPath}/`,
       publicPath: `auto`,
