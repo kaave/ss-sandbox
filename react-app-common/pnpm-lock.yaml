@@ -219,6 +219,9 @@ devDependencies:
   systemjs-webpack-interop:
     specifier: ^2.3.7
     version: 2.3.7(webpack@5.81.0)
+  ts-config-single-spa:
+    specifier: ^3.0.0
+    version: 3.0.0
   typed-css-modules:
     specifier: ^0.7.2
     version: 0.7.2
@@ -12179,6 +12182,10 @@ packages:
   /trim-newlines@3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
+    dev: true
+
+  /ts-config-single-spa@3.0.0:
+    resolution: {integrity: sha512-SS24+FHn9mi0awcoHN4l6uioBxPjgOnwI8adVZeNnw8oXJ8VyAGDqBfRF1EMVtd9Va0bxA8kkeU0SWtLS/Guvg==}
     dev: true
 
   /ts-dedent@2.2.0:

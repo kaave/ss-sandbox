@@ -107,6 +107,7 @@
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "swc-loader": "^0.2.3",
     "systemjs-webpack-interop": "^2.3.7",
+    "ts-config-single-spa": "^3.0.0",
     "typed-css-modules": "^0.7.2",
     "typedoc": "^0.24.6",
     "typedoc-plugin-missing-exports": "^2.0.0",
