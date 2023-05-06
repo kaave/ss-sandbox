@@ -5,6 +5,9 @@
     "./gen/**/*"
   ],
   "words": [
-    "lifecycles"
+    "lifecycles",
+    "bufbuild",
+    "systemjs",
+    "protobuf"
   ]
 }
