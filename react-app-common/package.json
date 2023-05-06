@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "run-p dev:*",
     "dev:webpack": "webpack serve --env standalone",
     "dev:css-types": "pnpm gen:css-types --watch",
@@ -121,9 +122,7 @@
   "packageManager": "pnpm@8.4.0",
   "engines": {
     "node": "18.14.2",
-    "npm": "please_use_pnpm_instead",
-    "pnpm": "8.4.0",
-    "yarn": "please_use_pnpm_instead"
+    "pnpm": "8.4.0"
   },
   "msw": {
     "workerDirectory": "public"
