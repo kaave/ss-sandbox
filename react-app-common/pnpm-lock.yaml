@@ -117,9 +117,6 @@ devDependencies:
   eslint-plugin-import:
     specifier: ^2.27.5
     version: 2.27.5(@typescript-eslint/parser@5.59.2)(eslint-import-resolver-typescript@3.5.5)(eslint@8.39.0)
-  eslint-plugin-jest:
-    specifier: ^27.2.1
-    version: 27.2.1(@typescript-eslint/eslint-plugin@5.59.2)(eslint@8.39.0)(typescript@5.0.4)
   eslint-plugin-jest-dom:
     specifier: ^4.0.3
     version: 4.0.3(eslint@8.39.0)
@@ -150,6 +147,9 @@ devDependencies:
   eslint-plugin-unicorn:
     specifier: ^46.0.0
     version: 46.0.0(eslint@8.39.0)
+  eslint-plugin-vitest:
+    specifier: ^0.1.5
+    version: 0.1.5(eslint@8.39.0)(typescript@5.0.4)
   jsdom:
     specifier: ^22.0.0
     version: 22.0.0
@@ -6618,27 +6618,6 @@ packages:
       requireindex: 1.2.0
     dev: true
 
-  /eslint-plugin-jest@27.2.1(@typescript-eslint/eslint-plugin@5.59.2)(eslint@8.39.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-l067Uxx7ZT8cO9NJuf+eJHvt6bqJyz2Z29wykyEdz/OtmcELQl2MQGQLX8J94O1cSJWAwUSEvCjwjA7KEK3Hmg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': ^5.0.0
-      eslint: ^7.0.0 || ^8.0.0
-      jest: '*'
-    peerDependenciesMeta:
-      '@typescript-eslint/eslint-plugin':
-        optional: true
-      jest:
-        optional: true
-    dependencies:
-      '@typescript-eslint/eslint-plugin': 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.39.0)(typescript@5.0.4)
-      '@typescript-eslint/utils': 5.57.1(eslint@8.39.0)(typescript@5.0.4)
-      eslint: 8.39.0
-    transitivePeerDependencies:
-      - supports-color
-      - typescript
-    dev: true
-
   /eslint-plugin-jsdoc@43.1.1(eslint@8.39.0):
     resolution: {integrity: sha512-J2kjjsJ5vBXSyNzqJhceeSGTAgVgZHcPSJKo3vD4tNjUdfky98rR2VfZUDsS1GKL6isyVa8GWvr+Az7Vyg2HXA==}
     engines: {node: '>=16'}
@@ -6794,6 +6773,19 @@ packages:
       safe-regex: 2.1.1
       semver: 7.3.8
       strip-indent: 3.0.0
+    dev: true
+
+  /eslint-plugin-vitest@0.1.5(eslint@8.39.0)(typescript@5.0.4):
+    resolution: {integrity: sha512-SxbGjyC6peUaCt/P+YrHxdfVzJkLC1RCotaCMZ6vuvkRGOx3SE1jcZb7vTlU6s9PoF0DYlkWuBAAYZi1IAwg2A==}
+    engines: {node: 14.x || >= 16}
+    peerDependencies:
+      eslint: '>=8.0.0'
+    dependencies:
+      '@typescript-eslint/utils': 5.59.2(eslint@8.39.0)(typescript@5.0.4)
+      eslint: 8.39.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: true
 
   /eslint-scope@5.1.1:

@@ -33,13 +33,11 @@ const tsContexts = [
 module.exports = {
   ignorePatterns: [
     '.eslintrc.*',
-    'playwright.config.ts',
-    'vite.config.*',
     'dist/**/*',
+    'doc/**/*',
     'gen/**/*',
-    'build/**/*',
+    // 自動生成されるものが大半のため。
     '**/*.d.ts',
-    '**/babel-*/*',
   ],
   env: {
     es6: true,
@@ -136,7 +134,7 @@ module.exports = {
         allowTypedFunctionExpressions: true,
         /** high order function も型を請求する。 */
         allowHigherOrderFunctions: true,
-        /** `as const` を付与した戻り値の場合は許可する。冗長な可能性があるため。 */
+        /** `as const` を付与した戻り値の場合は省略を許可する。冗長な可能性があるため。 */
         allowDirectConstAssertionInArrowFunctions: true,
         /** 特別許可 */
         // allowNames: ['render'],
@@ -430,7 +428,7 @@ module.exports = {
       },
     ],
     /** Description のあとには空行を要求する。 */
-    'jsdoc/tag-lines': [WARN, { count: 1 }],
+    'jsdoc/tag-lines': [WARN, 'always', { count: 1 }],
 
     /**
      * 引数に対応した `@param` タグを必須とする。
@@ -475,10 +473,10 @@ module.exports = {
     },
     /** For unit / integration test files */
     {
-      files: ['./src/**/?(*.)+(spec|test).+(ts|tsx|js)'],
+      files: ['*.spec.(ts|tsx)'],
       extends: [
+        'plugin:vitest/recommended',
         // Note: Vitest でも問題なく使える
-        'plugin:jest/recommended',
         'plugin:jest-dom/recommended',
         'plugin:testing-library/react',
       ],
@@ -488,7 +486,7 @@ module.exports = {
     },
     /** For Storybook files */
     {
-      files: ['**/?(*.)+(story|stories).+(ts|tsx|js)'],
+      files: ['*.stories.tsx'],
       extends: ['plugin:storybook/recommended'],
       rules: {
         /** Allow default export. Storybook needs this. */
