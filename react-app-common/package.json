@@ -26,7 +26,8 @@
     "test": "vitest",
     "coverage": "jest --coverage",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build-typedoc": "typedoc --tsconfig tsconfig.typedoc.json"
   },
   "browserslist": [
     "chrome >= 92"
@@ -107,6 +108,8 @@
     "swc-loader": "^0.2.3",
     "systemjs-webpack-interop": "^2.3.7",
     "typed-css-modules": "^0.7.2",
+    "typedoc": "^0.24.6",
+    "typedoc-plugin-missing-exports": "^2.0.0",
     "typescript": "^5.0.4",
     "vite-tsconfig-paths": "^4.2.0",
     "vitest": "^0.31.0",

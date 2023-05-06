@@ -1,5 +1,6 @@
 {
-  "extends": "@tsconfig/strictest/tsconfig.json",
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "extends": ["@tsconfig/strictest/tsconfig.json"],
   "compilerOptions": {
     /*
      * `ts-config-single-spa`
