@@ -11,7 +11,8 @@ export default defineConfig({
   test: {
     // globals でないと挙動が怪しいテストがいくつかある。 AsyncCounter など。
     globals: true,
-    // happy-dom は input[type="text"] に対する fireEvent.change の挙動がおかしい。
+    // より高速な happy-dom を利用したいが、トラブルがあるため避ける。
+    // 例: input[type="text"] に対する fireEvent.change の挙動がおかしい。
     // environment: 'happy-dom',
     environment: 'jsdom',
     setupFiles: './test/setup.ts',
