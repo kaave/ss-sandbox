@@ -33,6 +33,8 @@
     // Comment
     "aaron-bond.better-comments",
     "wayou.vscode-todo-highlight",
+    // Spell checker
+    "streetsidesoftware.code-spell-checker",
     // Support code jumps for CSS class names
     "pranaygp.vscode-css-peek",
     // Support css variables
