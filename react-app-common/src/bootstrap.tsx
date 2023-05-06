@@ -1,20 +1,44 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { navigateToUrl } from 'single-spa';
+import { createPromiseClient } from '@bufbuild/connect';
+import { createConnectTransport } from '@bufbuild/connect-web';
+import { HelloWorldService } from '../gen/schemas/v1/example_connect';
+import { HelloType } from '../gen/schemas/v1/example_pb';
 import styles from './bootstrap.module.css';
+
+const transport = createConnectTransport({ baseUrl: 'http://localhost:3000' });
+const client = createPromiseClient(HelloWorldService, transport);
 
 export const Root = (): JSX.Element => {
   const [message, setMessage] = useState('');
 
+  const sendMessageHandler = useCallback(async () => {
+    await client.sendMessage({
+      sentence: 'Hello',
+      email: 'mail@add.ress',
+      type: HelloType.BAR,
+    });
+  }, []);
+
+  const getMessageHandler = useCallback(async () => {
+    const message = await client.getMessage({});
+    console.log(message);
+  }, []);
+
   useEffect(() => {
     const eventDetail = [
       'my-custom-event',
-      (event: { /**
-                 *
-                 */
-      detail: { /**
-                 *
-                 */
-      message: string } }) => {
+      (event: {
+        /**
+         *
+         */
+        detail: {
+          /**
+           *
+           */
+          message: string;
+        };
+      }) => {
         const data = event.detail;
         console.log(data.message);
         setMessage(data.message);
@@ -31,6 +55,8 @@ export const Root = (): JSX.Element => {
   return (
     <div className={styles.root}>
       Root. {message ? <span>Got message: {message}</span> : null}
+      <button type="button" onClick={sendMessageHandler}>Send</button>
+      <button type="button" onClick={getMessageHandler}>Get</button>
       <ul>
         <li>
           <a href="/react-1" onClick={navigateToUrl}>

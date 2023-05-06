@@ -1,11 +1,13 @@
 const { merge } = require('webpack-merge');
 const singleSpaDefaults = require('webpack-config-single-spa-react-ts');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
+const orgName = 'kaave';
+const projectName = 'react-app-common';
+
 module.exports = (webpackConfigEnv, argv) => {
-  const orgName = 'kaave';
-  const projectName = 'react-app-common';
   const defaultConfig = singleSpaDefaults({
     orgName,
     projectName,
@@ -37,7 +39,12 @@ module.exports = (webpackConfigEnv, argv) => {
   const outputPath = projectName;
   return merge(defaultConfig, {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
-    output: { filename: `${outputPath}/index.js` },
+    output: {
+      filename: `${outputPath}/index.js`,
+      // filename: `index.js`,
+      // publicPath: `${outputPath}/`,
+      publicPath: `auto`,
+    },
     externalsType: 'system',
     externals: {
       // 'single-spa': 'singleSpa'
@@ -71,8 +78,16 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       ],
     },
+    devServer: {
+      static: {
+        directory: 'public',
+      },
+    },
     ...(!isDevelopmentMode && {
-      plugins: [new MiniCssExtractPlugin({ filename: `${outputPath}/index.css` })],
+      plugins: [
+        new MiniCssExtractPlugin({ filename: `${outputPath}/index.css` }),
+        new CopyWebpackPlugin({ patterns: ['public'] }),
+      ],
       devtool: false,
     }),
   });

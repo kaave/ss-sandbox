@@ -1,8 +1,19 @@
+import 'systemjs-webpack-interop/auto-public-path';
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
 import singleSpaReact from 'single-spa-react';
 import { Root as rootComponent } from './bootstrap';
 // import type { LifeCycleFn } from "single-spa";
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+const developmentMode = process.env['NODE_ENV'] === 'development';
+
+if (developmentMode) {
+  // @todo Dynamic import を行うと URL が不正な値になるため、やむなく require を使用
+  // import(/* webpackChunkName: "msw-browser" */ './mocks/browser').then(({ worker }) => worker.start());
+  const { worker } = require(/* webpackChunkName: "msw-browser" */ './mocks/browser');
+  worker.start();
+}
 
 const lifecycles = singleSpaReact({
   React,

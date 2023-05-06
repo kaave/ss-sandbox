@@ -3,11 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "webpack serve --port 7500",
+    "dev": "run-p dev:*",
+    "dev:webpack": "webpack serve --env standalone",
+    "dev:css-types": "pnpm gen:css-types --watch",
     "gen": "run-p gen:*",
     "gen:css-types": "tcm src",
-    "start": "webpack serve",
-    "start:standalone": "webpack serve --env standalone",
+    "start": "webpack serve --port 7500",
     "build": "pnpm gen; run-p build:* typecheck",
     "build:webpack": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
@@ -28,6 +29,9 @@
     "chrome >= 92"
   ],
   "dependencies": {
+    "@bufbuild/connect": "^0.8.6",
+    "@bufbuild/connect-web": "^0.8.6",
+    "@bufbuild/protobuf": "^1.2.0",
     "jotai": "2.0.4",
     "postcss": "^8.4.23",
     "react": "^18.2.0",
@@ -49,6 +53,7 @@
     "autoprefixer": "^10.4.14",
     "babel-loader": "^9.1.2",
     "babel-plugin-react-css-modules": "^5.2.6",
+    "copy-webpack-plugin": "^11.0.0",
     "cross-env": "^7.0.3",
     "cross-fetch": "^3.1.5",
     "cspell": "^6.31.1",
@@ -70,6 +75,7 @@
     "eslint-plugin-unicorn": "^46.0.0",
     "jsdom": "^22.0.0",
     "mini-css-extract-plugin": "^2.7.5",
+    "msw": "^1.2.1",
     "npm-run-all": "^4.1.5",
     "postcss-calc": "^9.0.0",
     "postcss-flexbugs-fixes": "^5.0.2",
@@ -87,6 +93,7 @@
     "stylelint-config-recommended": "^12.0.0",
     "stylelint-declaration-block-no-ignored-properties": "^2.7.0",
     "swc-loader": "^0.2.3",
+    "systemjs-webpack-interop": "^2.3.7",
     "typed-css-modules": "^0.7.2",
     "typescript": "^5.0.4",
     "vite-tsconfig-paths": "^4.2.0",
@@ -106,5 +113,8 @@
     "npm": "please_use_pnpm_instead",
     "pnpm": "8.4.0",
     "yarn": "please_use_pnpm_instead"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

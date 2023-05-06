@@ -36,6 +36,7 @@ module.exports = {
     'playwright.config.ts',
     'vite.config.*',
     'dist/**/*',
+    'gen/**/*',
     'build/**/*',
     '**/*.d.ts',
     '**/babel-*/*',
@@ -429,7 +430,7 @@ module.exports = {
       },
     ],
     /** Description のあとには空行を要求する。 */
-    'jsdoc/tag-lines': WARN,
+    'jsdoc/tag-lines': [WARN, { count: 1 }],
 
     /**
      * 引数に対応した `@param` タグを必須とする。

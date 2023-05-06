@@ -1,7 +1,8 @@
 {
   "ignorePaths": [
     "**/node_modules/**",
-    "./dist/*"
+    "./dist/**/*",
+    "./gen/**/*"
   ],
   "words": [
     "lifecycles"
