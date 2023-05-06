@@ -4,16 +4,19 @@
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "run-p dev:*",
+    "dev": "run-p dev:webpack dev:css-types typecheck",
     "dev:webpack": "webpack serve --env standalone",
     "dev:css-types": "pnpm gen:css-types --watch",
+    "dev:component": "run-p dev:css-types storybook typecheck",
+    "storybook": "storybook dev -p 6006",
+    "test": "vitest",
     "gen": "run-p gen:*",
     "gen:css-types": "tcm src",
     "start": "webpack serve --port 7500",
     "build": "pnpm gen; run-p build:* typecheck",
     "build:webpack": "webpack --mode=production",
-    "analyze": "webpack --mode=production --env analyze",
-    "complexity": "eslint src -c .eslintrc.complexity.cjs --ext .ts,.tsx,.js,.jsx",
+    "build:storybook": "storybook build",
+    "build:typedoc": "typedoc --tsconfig tsconfig.typedoc.json",
     "lint": "run-p lint:*",
     "lint:script": "eslint src --ext .ts,.tsx,.js,.jsx",
     "lint:style": "stylelint './src/**/*.css'",
@@ -24,11 +27,9 @@
     "fix:packagejson": "sort-package-json",
     "prettier": "prettier --write \"src/**/*.+(ts|tsx|json|yml|css|md|mdx)\"",
     "typecheck": "tsc --noEmit --skipLibCheck",
-    "test": "vitest",
-    "coverage": "jest --coverage",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "build-typedoc": "typedoc --tsconfig tsconfig.typedoc.json"
+    "analyze": "webpack --mode=production --env analyze",
+    "complexity": "eslint src -c .eslintrc.complexity.cjs --ext .ts,.tsx,.js,.jsx",
+    "coverage": "jest --coverage"
   },
   "browserslist": [
     "chrome >= 92"
