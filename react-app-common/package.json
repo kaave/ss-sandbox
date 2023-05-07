@@ -45,6 +45,7 @@
     "single-spa-react": "^5.0.1"
   },
   "devDependencies": {
+    "@kaave/shares": "file:../shares",
     "@storybook/addon-essentials": "^7.0.9",
     "@storybook/addon-interactions": "^7.0.9",
     "@storybook/addon-links": "^7.0.9",

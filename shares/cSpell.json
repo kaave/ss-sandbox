@@ -1,0 +1,13 @@
+{
+  "ignorePaths": [
+    "**/node_modules/**",
+    "./dist/**/*",
+    "./gen/**/*"
+  ],
+  "words": [
+    "lifecycles",
+    "bufbuild",
+    "systemjs",
+    "protobuf"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig.json",
+    // Note: 仕様上は Array にできるが、 `@typescript-eslint/parser` が対応してない模様。エラーが出るため断念。
+    // "extends": ["@tsconfig/strictest/tsconfig.json", "ts-config-single-spa"],
+    "extends": "@tsconfig/strictest/tsconfig.json",
+    "compilerOptions": {
+        /*
+         * `ts-config-single-spa`
+         * copy from https://github.com/single-spa/create-single-spa/blob/85a638b69d094641f916bff69349234a9071eb66/packages/ts-config-single-spa/tsconfig.json
+         */
+        "module": "esnext",
+        "allowSyntheticDefaultImports": true,
+        // `"bundler"` にしたいが、 single-spa-react に不備があり、エラーとなるためやむなく `"node"` とする。
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        // 最新の ECMAScript に対応するため、 ESNext に変更
+        "lib": ["dom", "ESNext"],
+        "declaration": true,
+        // "emitDeclarationOnly": true, // 型定義は不要なので省略する
+
+        /*
+         * Manual
+         */
+        "target": "ESNext",
+        "verbatimModuleSyntax": true,
+        "jsx": "react-jsx",
+        "declarationDir": "dist",
+        "types": ["vitest/globals", "@types/testing-library__jest-dom"]
+    }
+}

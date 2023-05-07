@@ -2,9 +2,12 @@
  * @file 大まかな複雑性を ESLint で測るための設定。
  */
 
-const WARN = 1;
+const sharedConfigs = require('@kaave/shares/.eslintrc.complexity.cjs');
 
 module.exports = {
+  ...sharedConfigs,
+  // @todo 命名がよくないためうまくいかない。
+  // extends: ['@kaave/shares/.eslintrc.complexity.cjs'],
   ignorePatterns: [
     '.eslintrc.*',
     'playwright.config.ts',
@@ -14,41 +17,7 @@ module.exports = {
     '**/*.d.ts',
     '**/*.spec.ts',
   ],
-  parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
-  root: true,
-  env: {
-    es6: true,
-    browser: true,
-  },
-  globals: {
-    JSX: true,
-  },
   parserOptions: {
     project: './tsconfig.json',
-  },
-  settings: {
-    'import/resolver': {
-      typescript: true,
-      node: {
-        extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-      },
-    },
-  },
-  rules: {
-    complexity: [WARN, 5],
-    'max-params': [WARN, 4],
-    'max-statements': [WARN, 7],
-    'max-statements-per-line': [WARN, { max: 1 }],
-    'max-nested-callbacks': [WARN, 2],
-    'max-depth': [WARN, { max: 3 }],
-    'max-lines': [
-      WARN,
-      {
-        max: 150,
-        skipBlankLines: true,
-        skipComments: true,
-      },
-    ],
   },
 };
