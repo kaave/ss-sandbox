@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package schemas.v1;
+
+import "schemas/validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+// Todo の Body。
+message Todo {
+  // ID。
+  uint64 id = 1;
+
+  // Todo の本文。
+  string body = 2 [(validate.rules).string = {
+    // 120文字以内。これはなんとなくの制限値。
+    max_len: 120,
+  }];
+
+  // Todo が Archive されているか。
+  bool archived = 3;
+}
+
+message IndexTodoResponse {
+  // Todo の一覧。
+  repeated Todo todos = 1;
+}
+
+message CreateTodoRequest {
+  // Todo の本文。
+  string body = 1 [(validate.rules).string = {
+    // 120文字以内。これはなんとなくの制限値。
+    max_len: 120,
+  }];
+}
+
+message CreateTodoResponse {
+  // 追加された Todo。
+  Todo todo = 1;
+}
+
+message UpdateTodoRequest {
+  // 更新する Todo。
+  Todo todo = 1;
+}
+
+message UpdateTodoResponse {
+  // 更新された Todo。
+  Todo todo = 1;
+}
+
+message DestroyTodoRequest {
+  // ID。
+  uint64 id = 1;
+}
+
+// Todo の各種 Service。
+// Rails の Actions にならった命名を行っている。
+// see: https://www.codecademy.com/article/standard-controller-actions
+service TodoService {
+  // Todo の一覧を取得する。
+  rpc IndexTodo (google.protobuf.Empty) returns (IndexTodoResponse) {}
+
+  // Todo の詳細を取得する。(今回は使わない)
+  // rpc ShowTodo (ShowTodoResponse) returns (ShowTodoResponse) {}
+
+  // Todo を新規追加する。
+  rpc CreateTodo (CreateTodoRequest) returns (CreateTodoResponse) {}
+  // Todo を更新する。
+  rpc UpdateTodo (UpdateTodoRequest) returns (UpdateTodoResponse) {}
+  // Todo を削除する。
+  rpc DestroyTodo (DestroyTodoRequest) returns (google.protobuf.Empty) {}
+}
