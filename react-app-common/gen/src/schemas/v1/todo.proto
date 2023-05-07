@@ -7,8 +7,8 @@ import "google/protobuf/empty.proto";
 
 // Todo の Body。
 message Todo {
-  // ID。
-  uint64 id = 1;
+  // ID。 UUID (v4) で生成すること。
+  string id = 1 [(validate.rules).string.uuid = true];
 
   // Todo の本文。
   string body = 2 [(validate.rules).string = {
@@ -49,8 +49,8 @@ message UpdateTodoResponse {
 }
 
 message DestroyTodoRequest {
-  // ID。
-  uint64 id = 1;
+  // ID。 see Todo.id
+  string id = 1 [(validate.rules).string.uuid = true];
 }
 
 // Todo の各種 Service。

@@ -5,9 +5,11 @@ import { createConnectTransport } from '@bufbuild/connect-web';
 import { HelloWorldService } from '../gen/schemas/v1/example_connect';
 import { HelloType } from '../gen/schemas/v1/example_pb';
 import styles from './bootstrap.module.css';
+import { TodoService } from '../gen/schemas/v1/todo_connect';
 
 const transport = createConnectTransport({ baseUrl: 'http://localhost:3000' });
 const client = createPromiseClient(HelloWorldService, transport);
+const todoClient = createPromiseClient(TodoService, transport);
 
 /** Root Component。よく `App` って名前になるやつ。 */
 export const Root = (): JSX.Element => {
@@ -24,6 +26,41 @@ export const Root = (): JSX.Element => {
   const getMessageHandler = useCallback(async () => {
     const message = await client.getMessage({});
     console.log(message);
+  }, []);
+
+  const indexTodoHandler = useCallback(async () => {
+    const todos = await todoClient.indexTodo({});
+    console.log(todos);
+  }, []);
+
+  const createTodoHandler = useCallback(async () => {
+    const createdTodo = await todoClient.createTodo({ body: 'CreateTodo from client' });
+    console.log(createdTodo);
+  }, []);
+
+  const updateTodoHandler = useCallback(async () => {
+    const response = await todoClient.indexTodo({});
+    const [target] = response.todos;
+    if (!target) {
+      return;
+    }
+
+    const clonedTarget = target.clone();
+    clonedTarget.body = 'Updated from client!!!';
+    clonedTarget.archived = !clonedTarget.archived;
+
+    const updatedTodo = await todoClient.updateTodo({ todo: clonedTarget });
+    console.log(updatedTodo);
+  }, []);
+
+  const destroyTodoHandler = useCallback(async () => {
+    const response = await todoClient.indexTodo({});
+    const [target] = response.todos;
+    if (!target) {
+      return;
+    }
+
+    await todoClient.destroyTodo({ id: target.id });
   }, []);
 
   useEffect(() => {
@@ -55,6 +92,18 @@ export const Root = (): JSX.Element => {
       </button>
       <button type="button" onClick={getMessageHandler}>
         Get
+      </button>
+      <button type="button" onClick={indexTodoHandler}>
+        IndexTodo
+      </button>
+      <button type="button" onClick={createTodoHandler}>
+        CreateTodo
+      </button>
+      <button type="button" onClick={updateTodoHandler}>
+        UpdateTodo
+      </button>
+      <button type="button" onClick={destroyTodoHandler}>
+        DestroyTodo
       </button>
       <ul>
         <li>

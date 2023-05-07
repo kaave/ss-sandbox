@@ -1,7 +1,7 @@
 import { rest } from 'msw';
 import { HelloWorldService } from '../../../gen/schemas/v1/example_connect';
 import { HelloType } from '../../../gen/schemas/v1/example_pb';
-import type { PickConnectResponse } from '../utils';
+import type { PickSchemaModel } from '../utils';
 
 export const sendMessage = rest.post(
   `http://localhost:3000/${HelloWorldService.typeName}/${HelloWorldService.methods.sendMessage.name}`,
@@ -9,7 +9,7 @@ export const sendMessage = rest.post(
     res(
       // Respond with a 200 status code
       context.status(200),
-      context.json({} satisfies PickConnectResponse<typeof HelloWorldService.methods.sendMessage.O.prototype>),
+      context.json({} satisfies PickSchemaModel<typeof HelloWorldService.methods.sendMessage.O.prototype>),
     ),
 );
 
@@ -24,6 +24,6 @@ export const getMessage = rest.post(
         email: 'mail@add.ress',
         type: HelloType.UNSPECIFIED,
         gotAt: undefined,
-      } satisfies PickConnectResponse<typeof HelloWorldService.methods.getMessage.O.prototype>),
+      } satisfies PickSchemaModel<typeof HelloWorldService.methods.getMessage.O.prototype>),
     ),
 );

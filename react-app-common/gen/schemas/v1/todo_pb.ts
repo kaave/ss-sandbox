@@ -4,7 +4,7 @@
 // @ts-nocheck
 
 import type { BinaryReadOptions, FieldList, JsonReadOptions, JsonValue, PartialMessage, PlainMessage } from "@bufbuild/protobuf";
-import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
+import { Message, proto3 } from "@bufbuild/protobuf";
 
 /**
  * Todo の Body。
@@ -13,11 +13,11 @@ import { Message, proto3, protoInt64 } from "@bufbuild/protobuf";
  */
 export class Todo extends Message<Todo> {
   /**
-   * ID。
+   * ID。 UUID (v4) で生成すること。
    *
-   * @generated from field: uint64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id = protoInt64.zero;
+  id = "";
 
   /**
    * Todo の本文。
@@ -41,7 +41,7 @@ export class Todo extends Message<Todo> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "schemas.v1.Todo";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 2, name: "body", kind: "scalar", T: 9 /* ScalarType.STRING */ },
     { no: 3, name: "archived", kind: "scalar", T: 8 /* ScalarType.BOOL */ },
   ]);
@@ -263,11 +263,11 @@ export class UpdateTodoResponse extends Message<UpdateTodoResponse> {
  */
 export class DestroyTodoRequest extends Message<DestroyTodoRequest> {
   /**
-   * ID。
+   * ID。 see Todo.id
    *
-   * @generated from field: uint64 id = 1;
+   * @generated from field: string id = 1;
    */
-  id = protoInt64.zero;
+  id = "";
 
   constructor(data?: PartialMessage<DestroyTodoRequest>) {
     super();
@@ -277,7 +277,7 @@ export class DestroyTodoRequest extends Message<DestroyTodoRequest> {
   static readonly runtime: typeof proto3 = proto3;
   static readonly typeName = "schemas.v1.DestroyTodoRequest";
   static readonly fields: FieldList = proto3.util.newFieldList(() => [
-    { no: 1, name: "id", kind: "scalar", T: 4 /* ScalarType.UINT64 */ },
+    { no: 1, name: "id", kind: "scalar", T: 9 /* ScalarType.STRING */ },
   ]);
 
   static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DestroyTodoRequest {

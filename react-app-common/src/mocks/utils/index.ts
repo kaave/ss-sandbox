@@ -1,7 +1,7 @@
 import { type Message } from '@bufbuild/protobuf';
 
 /**
- * Connect で生成されたコードの Response の Prototype から、値のみを抽出する。
+ * Connect で生成されたコードの Request / Response の Prototype から、値のみを抽出する。
  *
  * @remarks
  * もっとよいやり方、または Utility types が存在すると思われる。要調査。
@@ -23,13 +23,13 @@ import { type Message } from '@bufbuild/protobuf';
  * ```ts
  * // TypeScript example
  *
- * PickConnectResponse<typeof HelloWorldService.methods.hello.O.prototype>;
+ * PickSchemaModel<typeof HelloWorldService.methods.hello.O.prototype>;
  * // => { message: string }
  * ```
  *
  * @template ResponsePrototype - 対象。
  */
-export type PickConnectResponse<ResponsePrototype extends Message> = {
+export type PickSchemaModel<ResponsePrototype extends Message> = {
   [Key in Exclude<keyof ResponsePrototype, keyof Message>]: ResponsePrototype[Key];
 };
 
