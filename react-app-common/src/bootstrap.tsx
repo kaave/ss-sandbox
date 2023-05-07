@@ -9,6 +9,7 @@ import styles from './bootstrap.module.css';
 const transport = createConnectTransport({ baseUrl: 'http://localhost:3000' });
 const client = createPromiseClient(HelloWorldService, transport);
 
+/** Root Component。よく `App` って名前になるやつ。 */
 export const Root = (): JSX.Element => {
   const [message, setMessage] = useState('');
 
@@ -29,13 +30,7 @@ export const Root = (): JSX.Element => {
     const eventDetail = [
       'my-custom-event',
       (event: {
-        /**
-         *
-         */
         detail: {
-          /**
-           *
-           */
           message: string;
         };
       }) => {
@@ -55,8 +50,12 @@ export const Root = (): JSX.Element => {
   return (
     <div className={styles.root}>
       Root. {message ? <span>Got message: {message}</span> : null}
-      <button type="button" onClick={sendMessageHandler}>Send</button>
-      <button type="button" onClick={getMessageHandler}>Get</button>
+      <button type="button" onClick={sendMessageHandler}>
+        Send
+      </button>
+      <button type="button" onClick={getMessageHandler}>
+        Get
+      </button>
       <ul>
         <li>
           <a href="/react-1" onClick={navigateToUrl}>

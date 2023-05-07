@@ -1,17 +1,14 @@
 /**
- * @file
- * ESLint の設定。参考にしたのは以下:
- * - https://hepokon365.hatenablog.com/entry/2022/08/17/081732
+ * @file ESLint の設定。参考にしたのは以下:
+ *
+ *   - https://hepokon365.hatenablog.com/entry/2022/08/17/081732
  */
 
 const OFF = 0;
 const WARN = 1;
 const ERROR = 2;
 
-/**
- * React 以外の Context (JSDoc) をまとめたもの。
- * 実質厳密に取得することは難しいので、やむなく Arrow function を除外している。
- */
+/** React 以外の Context (JSDoc) をまとめたもの。 実質厳密に取得することは難しいので、やむなく Arrow function を除外している。 */
 const jsRequire = {
   ClassDeclaration: true,
   ClassExpression: true,
@@ -82,22 +79,21 @@ module.exports = {
     /** 宣言前の利用を禁止する。巻き上げを考えると後で実装したいことがある。本当にまずいものは tsc が落とすので無効化。 */
     'no-use-before-define': OFF,
     /**
-     * switch の default 句を無効化する。個別に処理したほうが変更に強い為無効化。
-     * なお代わりに `@typescript-eslint/switch-exhaustiveness-check` で
-     * 網羅性を担保しているため、あわせて参照のこと。
+     * Switch の default 句を無効化する。個別に処理したほうが変更に強い為無効化。 なお代わりに
+     * `@typescript-eslint/switch-exhaustiveness-check` で 網羅性を担保しているため、あわせて参照のこと。
      */
     'default-case': OFF,
     /** 条件分岐によって、戻り値を返す/返さないが統一されていることを保証する。TS で担保するため無効化。 */
     'consistent-return': OFF,
     /** `_` を先頭または末尾に付与することを禁止する。特殊な命名を除き有効。 */
     'no-underscore-dangle': [ERROR, { allow: ['__dirname', '__filename'] }],
-    /** console API を許可する。 */
+    /** Console API を許可する。 */
     'no-console': OFF,
     /** 関数の代入式を return するのを許可する。Arrow function のみ無効化したいがオプションがないので仕方なく全て許可。 */
     'no-return-assign': OFF,
-    /** var を先頭に配置するのを強制しない。 declare と相性が悪く、また JS 空間でももう var は使わない */
+    /** Var を先頭に配置するのを強制しない。 declare と相性が悪く、また JS 空間でももう var は使わない */
     'vars-on-top': OFF,
-    /** var を許可する。 declare と相性が悪い。 */
+    /** Var を許可する。 declare と相性が悪い。 */
     'no-var': OFF,
     /** 同名の local 変数を許可する。あえて同名にするプラクティスが存在する。 */
     'no-shadow': OFF,
@@ -106,21 +102,15 @@ module.exports = {
     'no-unused-vars': OFF,
     '@typescript-eslint/no-unused-vars': OFF,
 
-    /** switch ですべての値を網羅していることを強制する。 */
+    /** Switch ですべての値を網羅していることを強制する。 */
     '@typescript-eslint/switch-exhaustiveness-check': ERROR,
     /** 型情報のみ用いている要素は type-only import を強制する。 */
     '@typescript-eslint/consistent-type-imports': ERROR,
-    /**
-     * Mutable な引数には readonly (Readonly) を強制する。
-     * ルールが制御困難なため無効化するが、基本的に付与する。
-     */
+    /** Mutable な引数には readonly (Readonly) を強制する。 ルールが制御困難なため無効化するが、基本的に付与する。 */
     '@typescript-eslint/prefer-readonly-parameter-types': OFF,
-    /**
-     * async function が await を利用してなくても構わない。
-     * Promise を返却するために利用するケースがあるため。
-     */
+    /** Async function が await を利用してなくても構わない。 Promise を返却するために利用するケースがあるため。 */
     '@typescript-eslint/require-await': OFF,
-    /** await などで処理していない Promise を許可する。あえてそのままにしておきたい場合があるため。 */
+    /** Await などで処理していない Promise を許可する。あえてそのままにしておきたい場合があるため。 */
     '@typescript-eslint/no-floating-promises': OFF,
     /** 意図していないであろう箇所で利用されている Promise を禁止する。 Iteration 時などに利用する void return のケースは例外。 */
     '@typescript-eslint/no-misused-promises': [ERROR, { checksVoidReturn: false }],
@@ -130,9 +120,9 @@ module.exports = {
       {
         /** 引数はなくても良い */
         allowExpressions: true,
-        /** type で定義した関数型を使ってる場合は自明なため端折る */
+        /** Type で定義した関数型を使ってる場合は自明なため端折る */
         allowTypedFunctionExpressions: true,
-        /** high order function も型を請求する。 */
+        /** High order function も型を請求する。 */
         allowHigherOrderFunctions: true,
         /** `as const` を付与した戻り値の場合は省略を許可する。冗長な可能性があるため。 */
         allowDirectConstAssertionInArrowFunctions: true,
@@ -170,7 +160,7 @@ module.exports = {
         },
       },
     ],
-    /** `null` を禁止する。 `undefined` と使い分ける必要があるため無効化。*/
+    /** `null` を禁止する。 `undefined` と使い分ける必要があるため無効化。 */
     'unicorn/no-null': OFF,
     /** Iteration するメソッドにダイレクトに関数を渡すことを許可する。関数型の文脈ではありふれた実装であるため。 */
     'unicorn/no-array-callback-reference': OFF,
@@ -178,14 +168,15 @@ module.exports = {
     'unicorn/no-array-reduce': OFF,
     /**
      * .forEach(...) の使用を許可する。 for .. of より高速。
+     *
      * @see {@link https://jsben.ch/aGSc0 Benchmark}
      */
     'unicorn/no-array-for-each': OFF,
     /** ルール指定なしの一括 eslint-disable を許可する。一律禁止は厳しすぎるため。 */
     'unicorn/no-abusive-eslint-disable': OFF,
-    /** console.x で半角スペースを利用して出力の調整するのを禁止する。無効化。大きなお世話である。 */
+    /** Console.x で半角スペースを利用して出力の調整するのを禁止する。無効化。大きなお世話である。 */
     'unicorn/no-console-spaces': OFF,
-    /** camelCase, PascalCase 以外のファイル名は原則禁止する。 */
+    /** CamelCase, PascalCase 以外のファイル名は原則禁止する。 */
     'unicorn/filename-case': [
       ERROR,
       {
@@ -198,15 +189,12 @@ module.exports = {
 
     /** Prettier で整理するため不要 */
     'import/order': OFF,
-    /** default export はコードリーディングの難易度が上がるため禁止する。 */
+    /** Default export はコードリーディングの難易度が上がるため禁止する。 */
     'import/prefer-default-export': OFF,
     'import/no-default-export': ERROR,
     /** うまく動かない */
     'import/no-unresolved': OFF,
-    /**
-     * import 文のファイル名で省略できる拡張子を指定する。
-     * JS系は省略を許可する。
-     */
+    /** Import 文のファイル名で省略できる拡張子を指定する。 JS系は省略を許可する。 */
     'import/extensions': [
       ERROR,
       {
@@ -231,10 +219,7 @@ module.exports = {
         destructureInSignature: 'always',
       },
     ],
-    /**
-     * `React.displayName` の記載を強制する。
-     * HOC (ex. memo) の際にうまく動かないためやむなく無効化。
-     */
+    /** `React.displayName` の記載を強制する。 HOC (ex. memo) の際にうまく動かないためやむなく無効化。 */
     'react/display-name': OFF,
     /** `className` `style` など複雑性を著しく増加させる気配のする Prop を禁止する。 */
     'react/forbid-component-props': ERROR,
@@ -278,24 +263,15 @@ module.exports = {
     'react/jsx-no-leaked-render': ERROR,
     /** `a` タグに `javascript:` を渡すことを禁止する。危険。 */
     'react/jsx-no-script-url': ERROR,
-    /**
-     * 意味の無い Fragment を禁止する。ただし変数展開のために使用するのは許容する。
-     * `<>{'\u00A0'}</>` のような特殊文字を許可するため。
-     */
+    /** 意味の無い Fragment を禁止する。ただし変数展開のために使用するのは許容する。 `<>{'\u00A0'}</>` のような特殊文字を許可するため。 */
     'react/jsx-no-useless-fragment': [ERROR, { allowExpressions: true }],
-    /**
-     * 一行につき一コンポーネントを強要する。
-     * 半角スペースで区切られたパラグラフ + React Componentなどに対応できないため重すぎる。無効化
-     */
+    /** 一行につき一コンポーネントを強要する。 半角スペースで区切られたパラグラフ + React Componentなどに対応できないため重すぎる。無効化 */
     // 'react/jsx-one-expression-per-line': [ON, { allow: 'single-child' }],
     /** コンポーネントの命名は PascalCase で統一する。 */
     'react/jsx-pascal-case': ERROR,
     /** JSX 中の連続した改行やスペースを禁止する。基本的にUXに現れないため。 */
     'react/jsx-props-no-multi-spaces': ERROR,
-    /**
-     * Props を Spread Operator で渡すのを禁止する。
-     * 型をすり抜けて不要な値が混じってしまう可能性があるため。
-     */
+    /** Props を Spread Operator で渡すのを禁止する。 型をすり抜けて不要な値が混じってしまう可能性があるため。 */
     'react/jsx-props-no-spreading': ERROR,
     /** JSX の細かいスペースを規約で縛る。 */
     'react/jsx-tag-spacing': [
@@ -324,36 +300,27 @@ module.exports = {
     'react/no-access-state-in-setstate': ERROR,
     /**
      * Iteration する際に `key` へ index を利用することを禁止する。
-     * @todo かなり厳しいルールで、Reactのレンダリングについて理解がある場合は不要。
-     *   ある程度のコードを書いてから検討する。
+     *
+     * @todo かなり厳しいルールで、Reactのレンダリングについて理解がある場合は不要。 ある程度のコードを書いてから検討する。
      */
     'react/no-array-index-key': ERROR,
     /** Lifecycle methods で Arrow function の利用を禁止する。テストやパフォーマンスに悪影響を及ぼすため。 */
     'react/no-arrow-function-lifecycle': ERROR,
-    /** dangerous...を禁止する。気軽に使うものではないので、使う場合は明示的に無効化してコメントを書く。 */
+    /** Dangerous...を禁止する。気軽に使うものではないので、使う場合は明示的に無効化してコメントを書く。 */
     'react/no-danger': ERROR,
     /** 無効な HTML Attribute を禁止する。 */
     'react/no-invalid-html-attribute': ERROR,
-    /**
-     * React element の命名に `Ns:foo` のような namespace を利用することを禁止する。
-     * 一貫性を保つため無効化。
-     */
+    /** React element の命名に `Ns:foo` のような namespace を利用することを禁止する。 一貫性を保つため無効化。 */
     'react/no-namespace': ERROR,
     /** Props の Default 値に新規インスタンスを作成する書き方を禁止する。 */
     'react/no-object-type-as-default-prop': ERROR,
-    /**
-     * PureComponent で shouldComponentUpdate を使うことを禁止する。
-     * PureComponent である意義が薄れるため。
-     */
+    /** PureComponent で shouldComponentUpdate を使うことを禁止する。 PureComponent である意義が薄れるため。 */
     'react/no-redundant-should-component-update': ERROR,
     /** Function component の中で `this` を参照することを禁止する。 */
     'react/no-this-in-sfc': ERROR,
     /** ありがちな typo を禁止する。 */
     'react/no-typos': ERROR,
-    /**
-     * コンポーネントの中でネストしたコンポーネントの宣言を禁止する。
-     * 外部で宣言すべきである。
-     */
+    /** コンポーネントの中でネストしたコンポーネントの宣言を禁止する。 外部で宣言すべきである。 */
     'react/no-unstable-nested-components': ERROR,
     /** 未使用の State を禁止する。 */
     'react/no-unused-state': ERROR,
@@ -361,7 +328,7 @@ module.exports = {
     'react/no-will-update-set-state': OFF,
     /** Function component で書ける際はそれを強要する。 */
     'react/prefer-stateless-function': [ERROR, { ignorePureComponents: true }],
-    /** propType を禁止する。 TS で書いているので利用する必要性がない。 */
+    /** PropType を禁止する。 TS で書いているので利用する必要性がない。 */
     'react/prop-types': OFF,
     /** `/>` で閉じれる際は閉じタグではなくそれを強要する。 */
     'react/self-closing-comp': ERROR,
@@ -396,7 +363,7 @@ module.exports = {
      * - その他、利用者に対して明確にしておきたい事象。
      */
 
-    /** public な要素には例外なく JSDoc を要求する。 */
+    /** Public な要素には例外なく JSDoc を要求する。 */
     'jsdoc/require-jsdoc': [
       WARN,
       {
@@ -406,62 +373,41 @@ module.exports = {
       },
     ],
 
-    /** `*` が抜けていてフォーマットが崩れることを禁止する。 */
-    'jsdoc/require-asterisk-prefix': WARN,
-    /** `*` が冗長に足されていてフォーマットが崩れることを禁止する。 */
-    'jsdoc/no-multi-asterisks': [WARN, { allowWhitespace: true }],
-    /** 半角スペースや改行なのでフォーマットが崩れることを禁止する。 */
-    'jsdoc/check-alignment': WARN,
-
     /** 利用できるタグに制限を設け、でっちあげのタグを利用できないようにする。 */
-    'jsdoc/check-tag-names': WARN,
+    'jsdoc/check-tag-names': [WARN, { definedTags: ['remarks'] }],
 
-    /**
-     * Description を必須とする。
-     * また `@description` は使わず、最初の行をそのまま description として記載する。
-     */
+    /** Description を必須とする。 また `@description` は使わず、最初の行をそのまま description として記載する。 */
     'jsdoc/require-description': [
-      WARN,
+      ERROR,
       {
         descriptionStyle: 'body',
         contexts: [...Object.keys(jsRequire), ...tsContexts],
       },
     ],
-    /** Description のあとには空行を要求する。 */
-    'jsdoc/tag-lines': [WARN, 'always', { count: 1 }],
 
-    /**
-     * 引数に対応した `@param` タグを必須とする。
-     * なお、標準設定と異なり Object 形式の引数は展開しない。
-     */
-    'jsdoc/require-param': [WARN, { checkDestructured: false, contexts: Object.keys(jsRequire) }],
-    /** `@param` タグの説明文の前に `-` を挿入することを必須とする。 */
-    'jsdoc/require-hyphen-before-param-description': WARN,
+    /** 引数に対応した `@param` タグを必須とする。 なお、標準設定と異なり Object 形式の引数は展開しない。 */
+    'jsdoc/require-param': [ERROR, { checkDestructured: false, contexts: Object.keys(jsRequire) }],
+    /** `@param` タグの説明文の前に `-` を挿入することを禁止する。 VS Code にて引数単体の Suggestion に意図しない dot が付与されてしまう。 */
+    'jsdoc/require-hyphen-before-param-description': [ERROR, 'never'],
     /** `@param` タグには description を必須とする。 */
-    'jsdoc/require-param-description': [WARN, { contexts: Object.keys(jsRequire) }],
+    'jsdoc/require-param-description': [ERROR, { contexts: Object.keys(jsRequire) }],
     /** `@param` タグには name を必須とする。 */
-    'jsdoc/require-param-name': WARN,
+    'jsdoc/require-param-name': ERROR,
     /** `@param` タグの name と実装を一致させる。 */
-    'jsdoc/check-param-names': [WARN, { checkDestructured: false }],
+    'jsdoc/check-param-names': [ERROR, { checkDestructured: false }],
 
     /** 戻り値に対応した `@returns` タグを必須とする。 */
-    'jsdoc/require-returns': [WARN, { contexts: Object.keys(jsRequire) }],
+    'jsdoc/require-returns': [ERROR, { contexts: Object.keys(jsRequire) }],
     /** `@returns` タグと実装の矛盾を認めない。 `void` なのに書かれている、など。 */
-    'jsdoc/require-returns-check': WARN,
+    'jsdoc/require-returns-check': ERROR,
     /** `@returns` タグには description を必須とする。 */
-    'jsdoc/require-returns-description': WARN,
+    'jsdoc/require-returns-description': ERROR,
 
     /** `throw` statement を含む場合は `@throws` タグの記載を必須とする。 */
-    'jsdoc/require-throws': WARN,
+    'jsdoc/require-throws': ERROR,
 
-    /**
-     * `{TYPES}` という書式で型情報を付与することを禁止する。
-     * TypeScript を前提としているので、必要がないどころか、冗長である。
-     */
-    'jsdoc/no-types': WARN,
-
-    /** タグの並び順を強制する。 */
-    'jsdoc/sort-tags': WARN,
+    /** `{TYPES}` という書式で型情報を付与することを禁止する。 TypeScript を前提としているので、必要がないどころか、冗長である。 */
+    'jsdoc/no-types': ERROR,
   },
   overrides: [
     {

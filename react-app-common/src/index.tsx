@@ -11,7 +11,9 @@ const developmentMode = process.env['NODE_ENV'] === 'development';
 if (developmentMode) {
   // @todo Dynamic import を行うと URL が不正な値になるため、やむなく require を使用
   // import(/* webpackChunkName: "msw-browser" */ './mocks/browser').then(({ worker }) => worker.start());
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-var-requires, unicorn/prefer-module
   const { worker } = require(/* webpackChunkName: "msw-browser" */ './mocks/browser');
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
   worker.start();
 }
 

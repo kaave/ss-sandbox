@@ -1,2 +1,3 @@
 src/**/*.css.d.ts
 doc
+.vscode/settings.json

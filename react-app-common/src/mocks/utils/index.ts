@@ -1,16 +1,16 @@
-import { type Message } from "@bufbuild/protobuf";
+import { type Message } from '@bufbuild/protobuf';
 
 /**
  * Connect で生成されたコードの Response の Prototype から、値のみを抽出する。
  *
  * @remarks
- *
  * もっとよいやり方、または Utility types が存在すると思われる。要調査。
  *
  * @example
- * ### schema
  *
  * ```proto3
+ * // schema example
+ *
  * message HelloWorldResponse {
  *   string message = 1;
  * }
@@ -20,11 +20,14 @@ import { type Message } from "@bufbuild/protobuf";
  * }
  * ```
  *
- * ### ts
  * ```ts
- * PickConnectResponse<typeof HelloWorldService.methods.hello.O.prototype>
+ * // TypeScript example
+ *
+ * PickConnectResponse<typeof HelloWorldService.methods.hello.O.prototype>;
  * // => { message: string }
  * ```
+ *
+ * @template ResponsePrototype - 対象。
  */
 export type PickConnectResponse<ResponsePrototype extends Message> = {
   [Key in Exclude<keyof ResponsePrototype, keyof Message>]: ResponsePrototype[Key];
